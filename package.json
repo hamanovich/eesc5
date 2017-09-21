@@ -1,6 +1,6 @@
 {
   "name": "eesc5",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "EE styleguide generator",
   "main": "gulpfile.js",
   "scripts": {},
@@ -28,6 +28,7 @@
     "gulp-autoprefixer": "^4.0.0",
     "gulp-eslint": "^4.0.0",
     "gulp-imagemin": "^3.3.0",
+    "gulp-inject-version": "^1.0.1",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.1.0",
     "gulp-stylelint": "^5.0.0",

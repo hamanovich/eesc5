@@ -12,15 +12,18 @@ import browserify from 'browserify';
 import babelify from 'babelify';
 import buffer from 'vinyl-buffer';
 import source from 'vinyl-source-stream';
+import injectVersion from 'gulp-inject-version';
+
+import { version } from './package.json';
 
 const path = {
   build: {
-    common: './build',
-    html: './build/',
-    js: './build/js/',
-    css: './build/css/',
-    img: './build/img/',
-    fonts: './build/fonts/'
+    common: `./build-v${version}`,
+    html: `./build-v${version}/`,
+    js: `./build-v${version}/js/`,
+    css: `./build-v${version}/css/`,
+    img: `./build-v${version}/img/`,
+    fonts: `./build-v${version}/fonts/`
   },
   src: {
     html: './src/*.html',
@@ -31,27 +34,48 @@ const path = {
     img: './src/img/**/*.*',
     fonts: './src/fonts/**/*.*'
   },
-  clean: './build'
+  clean: `./build-v${version}`
+};
+
+const styleguideOptsDev = {
+  title: 'EE Styleguide',
+  server: true,
+  rootPath: path.build.common,
+  disableEncapsulation: true,
+  overviewPath: 'README.md',
+  extraHead: [
+    '<link rel="stylesheet" href="/sc5.css" />'
+  ],
+  afterBody: [
+    '<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>',
+    '<script src="/js/main.min.js"></script>'
+  ]
+};
+
+const styleguideOptsBuild = {
+  ...styleguideOptsDev,
+  appRoot: '/styleguide',
+  extraHead: [
+    '<link rel="stylesheet" href="/styleguide/sc5.css" />'
+  ],
+  afterBody: [
+    '<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>',
+    '<script src="/styleguide/js/main.min.js"></script>'
+  ]
 };
 
 gulp.task('styleguide:generate', () =>
   gulp.src(path.src.style)
     .pipe(plumber())
-    .pipe(styleguide.generate({
-      title: 'EE Styleguide',
-      server: true,
-      rootPath: path.build.common,
-      disableEncapsulation: true,
-      // appRoot: '/styleguide',
-      overviewPath: 'README.md',
-      extraHead: [
-        '<link rel="stylesheet" href="/sc5.css" />'
-      ],
-      afterBody: [
-        '<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>',
-        '<script src="/js/main.min.js"></script>'
-      ]
-    }))
+    .pipe(styleguide.generate(styleguideOptsDev))
+    .pipe(injectVersion())
+    .pipe(gulp.dest(path.build.common)));
+
+gulp.task('styleguide:generate:build', () =>
+  gulp.src(path.src.style)
+    .pipe(plumber())
+    .pipe(styleguide.generate(styleguideOptsBuild))
+    .pipe(injectVersion())
     .pipe(gulp.dest(path.build.common)));
 
 gulp.task('styleguide:applystyles', () =>
@@ -134,6 +158,13 @@ gulp.task('styleguide', [
   'styleguide:applystyles'
 ]);
 
+gulp.task('styleguide:build', [
+  'styleguide:generate:build',
+  'styleguide:applystyles'
+]);
+
 gulp.task('clean', cb => rimraf(path.clean, cb));
+
+gulp.task('deploy', ['build', 'styleguide:build']);
 
 gulp.task('default', ['build', 'watch']);
