@@ -1,5 +1,7 @@
 function demo() {
-  console.log('DEMO');
+  const [a, b] = [1, 2];
+
+  console.log('DEMO 2', a, b);
 }
 
-module.exports = demo;
+export default demo;

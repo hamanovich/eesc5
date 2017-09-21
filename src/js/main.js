@@ -1,7 +1,7 @@
-var demo = require('./demo');
+import demo from './demo';
 
-$(function () {
-  console.log('ready!');
+$(() => {
+  console.log('ready! steady! go...!');
 
   demo();
 });
