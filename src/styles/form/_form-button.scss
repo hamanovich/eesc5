@@ -1,0 +1,50 @@
+// A Form
+//
+// .eeg-form-button  - default.
+// :disabled  - disabled.
+// :hover  - hover.
+// .eeg-form-button--align-center  - align center.
+//
+// Markup:
+// <a class="eeg-form-button {$modifiers}">Item</a>
+//
+// Styleguide 2.1
+.eeg-form-button {
+  padding: 0 30px;
+  border: 0;
+  border-radius: 22px;
+  display: inline-block;
+  background-color: $teal;
+  color: $white;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 44px;
+
+  &:hover {
+    background-color: $dark-teal;
+  }
+
+  &:disabled {
+    background-color: $stone;
+    color: $slate;
+
+    &:hover {
+      background-color: $stone;
+    }
+  }
+
+  &--align-center {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &.cta-spinner {
+    background-position: 90% 50%;
+    background-repeat: no-repeat;
+
+    &.visible {
+      padding: 0 60px 0 30px;
+      background-image: url(../img/ajax-loader.gif);
+    }
+  }
+}

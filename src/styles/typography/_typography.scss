@@ -1,0 +1,24 @@
+// Typograpgy
+//
+// All styles realted to text
+//
+// Styleguide 3.0
+@font-face {
+  font-family: Nobblee;
+  src: url('./fonts/nobblee_regular.woff') format('woff'), url('.fonts/nobblee_regular.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Rubrik;
+  src: url('./fonts/rubrik_regular.woff') format('woff'), url('.fonts/rubrik_regular.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+$font-arial: Arial, sans-serif;
+$font-nobblee-regular: Nobblee, Arial, sans-serif;
+$font-rubrik: Rubrik, Arial, sans-serif;
+
+@import './headings';
