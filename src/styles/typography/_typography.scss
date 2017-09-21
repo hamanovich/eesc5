@@ -1,8 +1,9 @@
-// Typograpgy
+// Colors & Typograpgy
 //
-// All styles realted to text
+// This section describes base colors and typography
 //
 // Styleguide 3.0
+
 @font-face {
   font-family: Nobblee;
   src: url('./fonts/nobblee_regular.woff') format('woff'), url('.fonts/nobblee_regular.ttf') format('truetype');
@@ -17,8 +18,17 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: ee-icons;
+  src: url('./fonts/ee-icons.woff') format('woff'), url('./fonts/ee-icons.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 $font-arial: Arial, sans-serif;
 $font-nobblee-regular: Nobblee, Arial, sans-serif;
 $font-rubrik: Rubrik, Arial, sans-serif;
 
-@import './headings';
+@import './_colours';
+@import './_headings';
+@import './_icons';

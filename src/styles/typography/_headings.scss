@@ -1,16 +1,19 @@
 // Headings
 //
-// Description of
+// These are our headings
 //
 // Markup:
-// <h1>Heading 1 (!)</h1>
+// <h1>Heading 1</h1>
+// <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque massa ipsum, tincidunt vel convallis in, suscipit et risus. Morbi erat dolor, mattis at dignissim sed, feugiat sed lorem.
 // <h2>Heading 2</h2>
+// <p>Mauris feugiat suscipit turpis, ut rhoncus lectus finibus sed. Etiam suscipit consectetur eros vitae venenatis.</p>
 // <h3>Heading 3</h3>
+// <p>Ut leo ipsum, tincidunt vel mauris eget, convallis egestas justo. Nunc ligula neque, porta ac lorem id, ultrices dapibus dolor.</p>
 // <h4>Heading 4</h4>
+// <p> Phasellus interdum massa ante, ac placerat felis ultricies at. Fusce vulputate, odio sed convallis laoreet, tortor orci venenatis massa, a placerat ligula nisl vitae felis. In pellentesque ornare eleifend. Suspendisse potenti. Quisque eget mauris enim.</p>
 // <h5>Heading 5</h5>
-// <h6>Heading 6</h6>
 //
-// Styleguide 3.1
+// Styleguide 3.2
 h1 {
   font-size: 5em;
   line-height: 1;
@@ -31,12 +34,31 @@ h2 {
 h3 {
   font-size: 1.5em;
   color: $dark-teal;
-  border: 1px dashed $teal;
   font-family: $font-rubrik;
 }
 
 h4 {
-  font-family: $font-nobblee-regular;
   color: $dark-teal;
   font-size: 2em;
+}
+
+// Tabs
+//
+// markup: 
+// <button class="eeg-form-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+//   Collapsible button
+// </button>
+// <div class="collapse" id="collapseExample">
+// <div class="card card-body">
+//   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+// </div>
+// </div>
+//
+// Styleguide 3.3
+.collapse {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
 }

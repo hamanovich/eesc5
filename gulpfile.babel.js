@@ -1,6 +1,5 @@
 import gulp from 'gulp';
 import sass from 'gulp-sass';
-import uglify from 'gulp-uglify';
 import gulpStylelint from 'gulp-stylelint';
 import eslint from 'gulp-eslint';
 import imagemin from 'gulp-imagemin';
@@ -43,6 +42,7 @@ gulp.task('styleguide:generate', () =>
       server: true,
       rootPath: path.build.common,
       disableEncapsulation: true,
+      // appRoot: '/styleguide',
       overviewPath: 'README.md',
       extraHead: [
         '<link rel="stylesheet" href="/sc5.css" />'
@@ -74,9 +74,9 @@ gulp.task('js:build', () =>
   })
     .transform(babelify)
     .bundle()
+    .pipe(plumber())
     .pipe(source('main.min.js'))
     .pipe(buffer())
-    .pipe(uglify())
     .pipe(gulp.dest(path.build.js)));
 
 gulp.task('image:build', () =>
@@ -123,7 +123,7 @@ gulp.task('build', [
   'html:build',
   'js:build',
   'css:build',
-  'lint:js',
+  // 'lint:js',
   'lint:css',
   'fonts:build',
   'image:build'
