@@ -44,6 +44,7 @@ const styleguideOptsDev = {
   disableEncapsulation: true,
   overviewPath: 'README.md',
   extraHead: [
+    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">',
     '<link rel="stylesheet" href="/sc5.css" />'
   ],
   afterBody: [
@@ -56,6 +57,7 @@ const styleguideOptsBuild = {
   ...styleguideOptsDev,
   appRoot: '/styleguide',
   extraHead: [
+    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">',
     '<link rel="stylesheet" href="/styleguide/sc5.css" />'
   ],
   afterBody: [

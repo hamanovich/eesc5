@@ -39,5 +39,8 @@
     "sc5-styleguide": "^2.0.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
   }
 }

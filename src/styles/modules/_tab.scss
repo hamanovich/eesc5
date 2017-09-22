@@ -1,0 +1,42 @@
+// Tabs
+//
+// Tabs description
+//
+// Markup:
+// <ul class="nav nav-tabs" id="myTab" role="tablist">
+//   <li class="nav-item">
+//   <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Home</a>
+// </li>
+// <li class="nav-item">
+//   <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a>
+// </li>
+// </ul>
+// <div class="tab-content" id="myTabContent">
+// <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+//  <h2>Home tab</h2>
+// <p>home description</p>
+//</div>
+// <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+//  <h2>Profile tab</h2>
+// <p>profile description</p>
+//</div>
+// </div>
+//
+// Styleguide 5.1
+
+.fade {
+  opacity: 0;
+  transition: opacity .15s linear;
+}
+
+.fade.show {
+  opacity: 1;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+
+.tab-content > .active {
+  display: block;
+}

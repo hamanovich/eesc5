@@ -1,0 +1,26 @@
+// Blockquotes
+//
+// For quoting blocks of content from another source within your document. Wrap <code>&lt;blockquote class="blockquote"&gt;</code> around any <abbr title="HyperText Markup Language">HTML</abbr> as the quote.
+//
+// Markup:
+// <blockquote class="blockquote">
+//    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+// </blockquote>
+// <hr/>
+// <blockquote class="blockquote">
+//    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+//    <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+// </blockquote>
+//
+// Styleguide 3.8
+
+.blockquote {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.blockquote-footer {
+  display: block;
+  font-size: 80%;
+  color: #868e96;
+}
