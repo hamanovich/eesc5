@@ -25,3 +25,11 @@
 // </div>
 //
 // Styleguide 5.2
+
+.collapse {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
+}

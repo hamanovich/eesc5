@@ -1,4 +1,4 @@
-// A Form
+// Form buttons
 //
 // .eeg-form-button  - default.
 // :disabled  - disabled.
@@ -22,6 +22,7 @@
 
   &:hover {
     background-color: $dark-teal;
+    color: $white;
   }
 
   &:disabled {

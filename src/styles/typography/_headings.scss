@@ -41,24 +41,3 @@ h4 {
   color: $dark-teal;
   font-size: 2em;
 }
-
-// Tabs
-//
-// markup: 
-// <button class="eeg-form-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-//   Collapsible button
-// </button>
-// <div class="collapse" id="collapseExample">
-// <div class="card card-body">
-//   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-// </div>
-// </div>
-//
-// Styleguide 3.3
-.collapse {
-  display: none;
-}
-
-.collapse.show {
-  display: block;
-}

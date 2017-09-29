@@ -100,7 +100,9 @@ gulp.task('js:build', () =>
   })
     .transform(babelify)
     .bundle()
-    .pipe(plumber())
+    .on('error', (err) => {
+      console.log(err.stack);
+    })
     .pipe(source('main.min.js'))
     .pipe(buffer())
     .pipe(gulp.dest(path.build.js)));
@@ -149,10 +151,13 @@ gulp.task('build', [
   'html:build',
   'js:build',
   'css:build',
-  // 'lint:js',
-  'lint:css',
   'fonts:build',
   'image:build'
+]);
+
+gulp.task('lint', [
+  'lint:js',
+  'lint:css'
 ]);
 
 gulp.task('styleguide', [

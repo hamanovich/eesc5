@@ -1055,3 +1055,65 @@
     order: 1;
   }
 }
+
+// Nested grids
+// 
+// Markup:
+// <div class="row">
+// <div class="col-xs-7">
+//   <div class="box box-container">
+//     <div class="row">
+//       <div class="col-xs-9">
+//         <div class="box-first box-container">
+//           <div class="row">
+//             <div class="col-xs-4">
+//               <div class="box-nested">nested 1</div>
+//             </div>
+//             <div class="col-xs-8">
+//               <div class="box-nested">nested right</div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       <div class="col-xs-3">
+//         <div class="box-first box-container">
+//           <div class="row">
+//             <div class="col-xs">
+//               <div class="box-nested"></div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+// <div class="col-xs-5">
+//   <div class="box box-container">
+//     <div class="row">
+//       <div class="col-xs-12">
+//         <div class="box-first box-container">
+//           <div class="row">
+//             <div class="col-xs-6">
+//               <div class="box-nested"></div>
+//             </div>
+//             <div class="col-xs-6">
+//               <div class="box-nested"></div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+// </div>
+//
+// Styleguide 4.1
+.box-first {
+  background: #06c;
+  border-color: #007fff;
+}
+
+.box-nested {
+  background: #036;
+  border-color: #007fff;
+}
