@@ -1,0 +1,29 @@
+// Main colours
+//
+// This section describe main colors
+//
+// Markup:
+// <div class="flex-wrap">
+// <div style="background: #3d3d41;" class="eeg-color">coal</div>
+// <div style="background: #6d6e71;" class="eeg-color">slate</div>
+// <div style="background: #a9a9a9;" class="eeg-color">silver</div>
+// <div style="background: #e9020b;" class="eeg-color">notification-red</div>
+// <div style="background: #178804;" class="eeg-color">notification-green</div>
+// <div style="background: #ffe600;" class="eeg-color">yellow</div>
+// <div style="background: #f5d500;" class="eeg-color">dark-yellow</div>
+// <div style="background: #009c9c;" class="eeg-color">aqua</div>
+// <div style="background: #007b85;" class="eeg-color">teal</div>
+// <div style="background: #005a61;" class="eeg-color">dark-teal</div>
+// </div>
+//
+// Styleguide 3.10
+
+.eeg-color {
+  width: calc(50% - 1em);
+  height: 90px;
+  line-height: 90px;
+  margin: .5em;
+  text-align: center;
+  color: ee-colour('white');
+  border-radius: 4px;
+}

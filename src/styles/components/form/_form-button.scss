@@ -6,31 +6,31 @@
 // .eeg-form-button--align-center  - align center.
 //
 // Markup:
-// <a class="eeg-form-button {$modifiers}">Item</a>
+// <a class="eeg-form-button {$modifiers}" href="#">Item</a>
 //
-// Styleguide 2.1
+// Styleguide 7.1
 .eeg-form-button {
   padding: 0 30px;
   border: 0;
   border-radius: 22px;
   display: inline-block;
-  background-color: $teal;
-  color: $white;
+  background-color: ee-colour('teal');
+  color: ee-colour('white');
   font-size: 16px;
   font-weight: 600;
   line-height: 44px;
+  text-decoration: none;
 
   &:hover {
-    background-color: $dark-teal;
-    color: $white;
+    background-color: ee-colour('dark-teal');
+    color: ee-colour('white');
   }
 
   &:disabled {
-    background-color: $stone;
-    color: $slate;
+    background-color: ee-colour('stone');
 
     &:hover {
-      background-color: $stone;
+      background-color: ee-colour('stone');
     }
   }
 

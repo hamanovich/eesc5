@@ -45,16 +45,16 @@
   td {
     padding: 1em;
     vertical-align: top;
-    border-top: 1px solid $coal;
+    border-top: 1px solid ee-colour('coal');
   }
 
   thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid $coal;
+    border-bottom: 2px solid ee-colour('coal');
   }
 
   tbody + tbody {
-    border-top: 2px solid $coal;
+    border-top: 2px solid ee-colour('coal');
   }
 
   tbody tr:first-child td,

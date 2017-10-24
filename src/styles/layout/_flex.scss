@@ -1,0 +1,13 @@
+.flex-wrap {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-item {
+  width: calc(33% - .75em);
+  margin: .25em;
+  text-align: center;
+  color: ee-colour('dark-teal');
+  border-radius: 4px;
+  border: 1px solid ee-colour('dark-teal');
+}

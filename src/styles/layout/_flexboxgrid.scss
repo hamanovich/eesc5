@@ -87,7 +87,6 @@
 // </div>
 //
 // Styleguide 4.0
-
 .box,
 .box-first,
 .box-large,
@@ -95,7 +94,7 @@
 .box-row {
   height: 2em;
   margin-bottom: 1em;
-  background-color: $aqua;
+  background-color: ee-colour('aqua');
 }
 
 .container-fluid,

@@ -13,12 +13,12 @@
 // <p> Phasellus interdum massa ante, ac placerat felis ultricies at. Fusce vulputate, odio sed convallis laoreet, tortor orci venenatis massa, a placerat ligula nisl vitae felis. In pellentesque ornare eleifend. Suspendisse potenti. Quisque eget mauris enim.</p>
 // <h5>Heading 5</h5>
 //
-// Styleguide 3.2
+// Styleguide 3.9
 h1 {
   font-size: 5em;
   line-height: 1;
   font-weight: 400;
-  color: $teal;
+  color: ee-colour('teal');
   font-family: $font-nobblee-regular;
   margin: 0;
   padding: 0;
@@ -27,17 +27,17 @@ h1 {
 h2 {
   font-size: 2em;
   font-weight: 400;
-  color: $teal;
+  color: ee-colour('teal');
   font-family: $font-rubrik;
 }
 
 h3 {
   font-size: 1.5em;
-  color: $dark-teal;
+  color: ee-colour('dark-teal');
   font-family: $font-rubrik;
 }
 
 h4 {
-  color: $dark-teal;
+  color: ee-colour('dark-teal');
   font-size: 2em;
 }

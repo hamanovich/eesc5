@@ -1,0 +1,45 @@
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'x-small': 360px,
+  'small': 640px,
+  'medium': 784px,
+  'large': 1024px,
+  'x-large': 1440px
+) !default;
+
+/// Container's maximum width
+/// @type Length
+$max-width: map-get($breakpoints, 'x-large') !default;
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/assets/' !default;
+
+/// Font family
+$font-arial: Arial, sans-serif;
+$font-nobblee-regular: Nobblee, Arial, sans-serif;
+$font-rubrik: Rubrik, Arial, sans-serif;
+
+/// EE Brand colours
+$ee-colours: (
+  'aqua': #009c9c,
+  'teal': #007b85,
+  'dark-teal': #005a61,
+  'yellow': #ffe600,
+  'dark-yellow': #f5d500,
+  'slate': #6d6e71,
+  'coal': #3d3d41,
+  'white': #fff
+);
+
+$ee-colours-specific: (
+  'silver': #a9a9a9,
+  'stone': #d8d8d9,
+  'fog': #f4f4f4,
+  'notification-red': #e9020b,
+  'notification-green': #178804
+);

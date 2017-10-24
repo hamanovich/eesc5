@@ -2,7 +2,7 @@
 //
 // For quoting blocks of content from another source within your document. Wrap <code>&lt;blockquote class="blockquote"&gt;</code> around any <abbr title="HyperText Markup Language">HTML</abbr> as the quote.
 //
-// Markup: ../../html/blockquote.html
+// Markup: ../../../html/blockquote.html
 //
 // Styleguide 3.8
 
@@ -14,5 +14,5 @@
 .blockquote-footer {
   display: block;
   font-size: 80%;
-  color: #868e96;
+  color: ee-colour('coal');
 }

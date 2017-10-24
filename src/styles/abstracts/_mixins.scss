@@ -1,0 +1,29 @@
+/// Simple “Hocus” Sass @mixin for :hover and :focus pseudos. 
+@mixin hocus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+
+  @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}

@@ -29,11 +29,11 @@
 // Styleguide 3.5
 
 a {
-  color: $teal;
+  color: ee-colour('teal');
   text-decoration: none;
   transition: all .3s ease;
 
   &:hover {
-    color: $dark-teal;
+    color: ee-colour('dark-teal');
   }
 }
