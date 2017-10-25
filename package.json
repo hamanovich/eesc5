@@ -3,7 +3,9 @@
   "version": "0.1.2",
   "description": "EE styleguide generator",
   "main": "gulpfile.js",
-  "scripts": {},
+  "scripts": {
+    "gulp": "./node_modules/.bin/gulp"
+  },
   "keywords": [
     "styleguide",
     "sc5",
