@@ -80,32 +80,34 @@ gulp.task('styleguide:generate:build', () =>
     .pipe(injectVersion())
     .pipe(gulp.dest(path.build.common)));
 
-gulp.task('styleguide:applystyles', () =>
+gulp.task('styleguide:applystyles', ['styleguide:generate'], function () {
   gulp.src(path.src.style)
     .pipe(plumber())
-    .pipe(sass({
-      errLogToConsole: true
+    .pipe(sass().on('error', () => {
+      this.emit('end');
     }))
     .pipe(styleguide.applyStyles())
-    .pipe(gulp.dest(path.build.common)));
+    .pipe(gulp.dest(path.build.common));
+});
 
 gulp.task('html:build', () =>
   gulp.src(path.src.html)
     .pipe(gulp.dest(path.build.html)));
 
-gulp.task('js:build', () =>
+gulp.task('js:build', function () {
   browserify({
     entries: path.src.js,
     debug: true
   })
     .transform(babelify)
     .bundle()
-    .on('error', (err) => {
-      console.log(err.stack);
+    .on('error', () => {
+      this.emit('end');
     })
     .pipe(source('main.min.js'))
     .pipe(buffer())
-    .pipe(gulp.dest(path.build.js)));
+    .pipe(gulp.dest(path.build.js));
+});
 
 gulp.task('image:build', () =>
   gulp.src(path.src.img)
