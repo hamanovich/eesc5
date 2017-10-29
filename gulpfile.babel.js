@@ -4,7 +4,6 @@ import gulpStylelint from 'gulp-stylelint';
 import eslint from 'gulp-eslint';
 import imagemin from 'gulp-imagemin';
 import plumber from 'gulp-plumber';
-import watch from 'gulp-watch';
 import styleguide from 'sc5-styleguide';
 import pngquant from 'imagemin-pngquant';
 import rimraf from 'rimraf';
@@ -80,28 +79,38 @@ gulp.task('styleguide:generate:build', () =>
     .pipe(injectVersion())
     .pipe(gulp.dest(path.build.common)));
 
-gulp.task('styleguide:applystyles', ['styleguide:generate'], function () {
-  gulp.src(path.src.style)
+gulp.task('styleguide:applystyles', gulp.series('styleguide:generate', function () {
+  return gulp.src(path.src.style)
     .pipe(plumber())
-    .pipe(sass().on('error', () => {
+    .pipe(sass().on('error', (err) => {
+      console.log(err.stack);
       this.emit('end');
     }))
     .pipe(styleguide.applyStyles())
     .pipe(gulp.dest(path.build.common));
-});
+}));
 
+gulp.task('styleguide:build', gulp.series(
+  'styleguide:generate:build',
+  'styleguide:applystyles'
+));
+gulp.task('styleguide', gulp.series(
+  'styleguide:generate',
+  'styleguide:applystyles'
+));
 gulp.task('html:build', () =>
   gulp.src(path.src.html)
     .pipe(gulp.dest(path.build.html)));
 
 gulp.task('js:build', function () {
-  browserify({
+  return browserify({
     entries: path.src.js,
     debug: true
   })
     .transform(babelify)
     .bundle()
-    .on('error', () => {
+    .on('error', (err) => {
+      console.log(err.stack);
       this.emit('end');
     })
     .pipe(source('main.min.js'))
@@ -141,39 +150,29 @@ gulp.task('lint:js', () =>
     .pipe(eslint.format())
     .pipe(eslint.failAfterError()));
 
-gulp.task('watch', ['styleguide'], () => {
-  watch([path.src.html], () => gulp.start('html:build'));
-  watch([path.src.style], () => gulp.start('styleguide'));
-  watch([path.src.jss], () => gulp.start('js:build'));
-  watch([path.src.img], () => gulp.start('image:build'));
-  watch([path.src.fonts], () => gulp.start('fonts:build'));
-});
+gulp.task('watch', gulp.parallel('styleguide', () => {
+  gulp.watch([path.src.html], { delay: 3000 }, gulp.parallel('html:build'));
+  gulp.watch([path.src.style], { delay: 3000 }, gulp.parallel('styleguide'));
+  gulp.watch([path.src.jss], { delay: 3000 }, gulp.parallel('js:build'));
+  gulp.watch([path.src.img], gulp.parallel('image:build'));
+  gulp.watch([path.src.fonts], gulp.parallel('fonts:build'));
+}));
 
-gulp.task('build', [
+gulp.task('build', gulp.parallel(
   'html:build',
   'js:build',
   'css:build',
   'fonts:build',
   'image:build'
-]);
+));
 
-gulp.task('lint', [
+gulp.task('lint', gulp.parallel(
   'lint:js',
   'lint:css'
-]);
-
-gulp.task('styleguide', [
-  'styleguide:generate',
-  'styleguide:applystyles'
-]);
-
-gulp.task('styleguide:build', [
-  'styleguide:generate:build',
-  'styleguide:applystyles'
-]);
+));
 
 gulp.task('clean', cb => rimraf(path.clean, cb));
 
-gulp.task('deploy', ['build', 'styleguide:build']);
+gulp.task('deploy', gulp.parallel('build', 'styleguide:build'));
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', gulp.series('build', 'watch'));
