@@ -3,7 +3,6 @@ import sass from 'gulp-sass';
 import gulpStylelint from 'gulp-stylelint';
 import eslint from 'gulp-eslint';
 import imagemin from 'gulp-imagemin';
-import plumber from 'gulp-plumber';
 import styleguide from 'sc5-styleguide';
 import pngquant from 'imagemin-pngquant';
 import rimraf from 'rimraf';
@@ -18,14 +17,14 @@ import { version } from './package.json';
 const path = {
   build: {
     common: `./build-v${version}`,
-    html: `./build-v${version}/`,
+    html: `./build-v${version}/html/`,
     js: `./build-v${version}/js/`,
     css: `./build-v${version}/css/`,
     img: `./build-v${version}/img/`,
     fonts: `./build-v${version}/fonts/`
   },
   src: {
-    html: './src/*.html',
+    html: './src/html/*.html',
     js: './src/js/main.js',
     jss: './src/js/**/*.js',
     style: './src/styles/**/*.scss',
@@ -67,56 +66,43 @@ const styleguideOptsBuild = {
 
 gulp.task('styleguide:generate', () =>
   gulp.src(path.src.style)
-    .pipe(plumber())
     .pipe(styleguide.generate(styleguideOptsDev))
     .pipe(injectVersion())
     .pipe(gulp.dest(path.build.common)));
 
 gulp.task('styleguide:generate:build', () =>
   gulp.src(path.src.style)
-    .pipe(plumber())
     .pipe(styleguide.generate(styleguideOptsBuild))
     .pipe(injectVersion())
     .pipe(gulp.dest(path.build.common)));
 
-gulp.task('styleguide:applystyles', gulp.series('styleguide:generate', function () {
-  return gulp.src(path.src.style)
-    .pipe(plumber())
-    .pipe(sass().on('error', (err) => {
+gulp.task('styleguide:applystyles', gulp.series('styleguide:generate', () =>
+  gulp.src(path.src.style)
+    .pipe(sass().on('error', function (err) {
       console.log(err.stack);
       this.emit('end');
     }))
     .pipe(styleguide.applyStyles())
-    .pipe(gulp.dest(path.build.common));
-}));
+    .pipe(gulp.dest(path.build.common))));
 
-gulp.task('styleguide:build', gulp.series(
-  'styleguide:generate:build',
-  'styleguide:applystyles'
-));
-gulp.task('styleguide', gulp.series(
-  'styleguide:generate',
-  'styleguide:applystyles'
-));
 gulp.task('html:build', () =>
   gulp.src(path.src.html)
     .pipe(gulp.dest(path.build.html)));
 
-gulp.task('js:build', function () {
-  return browserify({
+gulp.task('js:build', () =>
+  browserify({
     entries: path.src.js,
     debug: true
   })
     .transform(babelify)
     .bundle()
-    .on('error', (err) => {
+    .on('error', function (err) {
       console.log(err.stack);
       this.emit('end');
     })
     .pipe(source('main.min.js'))
     .pipe(buffer())
-    .pipe(gulp.dest(path.build.js));
-});
+    .pipe(gulp.dest(path.build.js)));
 
 gulp.task('image:build', () =>
   gulp.src(path.src.img)
@@ -150,20 +136,30 @@ gulp.task('lint:js', () =>
     .pipe(eslint.format())
     .pipe(eslint.failAfterError()));
 
+gulp.task('styleguide', gulp.series(gulp.parallel(
+  'styleguide:generate',
+  'styleguide:applystyles'
+)));
+
+gulp.task('styleguide:build', gulp.series(gulp.parallel(
+  'styleguide:generate:build',
+  'styleguide:applystyles'
+)));
+
 gulp.task('watch', gulp.parallel('styleguide', () => {
-  gulp.watch([path.src.html], { delay: 3000 }, gulp.parallel('html:build'));
-  gulp.watch([path.src.style], { delay: 3000 }, gulp.parallel('styleguide'));
-  gulp.watch([path.src.jss], { delay: 3000 }, gulp.parallel('js:build'));
+  gulp.watch([path.src.html], { delay: 300 }, gulp.series('html:build', 'styleguide:applystyles'));
+  gulp.watch([path.src.style], { delay: 300 }, gulp.parallel('styleguide'));
+  gulp.watch([path.src.jss], { delay: 300 }, gulp.parallel('js:build'));
   gulp.watch([path.src.img], gulp.parallel('image:build'));
   gulp.watch([path.src.fonts], gulp.parallel('fonts:build'));
 }));
 
 gulp.task('build', gulp.parallel(
-  'html:build',
+  'image:build',
   'js:build',
+  'html:build',
   'css:build',
-  'fonts:build',
-  'image:build'
+  'fonts:build'
 ));
 
 gulp.task('lint', gulp.parallel(
